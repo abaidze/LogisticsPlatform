@@ -1,28 +1,23 @@
 import { create } from 'zustand';
-
-interface User {
-  id: string;
-  fullName: string;
-  email: string;
-  role: string;
-}
+import { persist } from 'zustand/middleware';
 
 interface AuthState {
-  user: User | null;
+  user: any | null;
   token: string | null;
-  setAuth: (user: User, token: string) => void;
+  setAuth: (user: any, token: string) => void;
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
-  setAuth: (user, token) => {
-    localStorage.setItem('token', token);
-    set({ user, token });
-  },
-  logout: () => {
-    localStorage.removeItem('token');
-    set({ user: null, token: null });
-  },
-}));
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      token: null,
+      setAuth: (user, token) => set({ user, token }),
+      logout: () => set({ user: null, token: null }),
+    }),
+    {
+      name: 'auth-storage', // ინახავს localStorage-ში
+    }
+  )
+);
