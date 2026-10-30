@@ -164,27 +164,27 @@ export default function RoutesPage() {
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="მარშრუტის დაჯავშნა">
           {selectedRoute && (
             <form onSubmit={handleBookingSubmit} className="space-y-4">
-              <div className="bg-slate-900/60 p-3 rounded-xl text-sm text-slate-300 space-y-1 border border-slate-800">
+              <div className="bg-slate-100 p-3 rounded-xl text-sm text-slate-700 space-y-1 border border-slate-200">
                 <p><strong>მიმართულება:</strong> {selectedRoute.fromCity} ➔ {selectedRoute.toCity}</p>
                 <p><strong>ფასი 1 ადგილზე:</strong> {selectedRoute.price} ₾</p>
                 <p><strong>თარიღი:</strong> {selectedRoute.date}</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">მგზავრის სახელი და გვარი:</label>
-                <Input
+                <label className="block text-sm font-medium text-slate-700 mb-1">მგზავრის სახელი და გვარი:</label>
+                <input
                   type="text"
                   required
                   placeholder="შეიყვანეთ სახელი..."
                   value={passengerName}
                   onChange={(e) => setPassengerName(e.target.value)}
-                  className="bg-slate-900/50 border-slate-700 text-white placeholder-slate-500"
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">ადგილების რაოდენობა:</label>
-                <Input
+                <label className="block text-sm font-medium text-slate-700 mb-1">ადგილების რაოდენობა:</label>
+                <input
                   type="text"
                   inputMode="numeric"
                   value={seatsCount}
@@ -197,12 +197,12 @@ export default function RoutesPage() {
                     }
                   }}
                   required
-                  className="bg-slate-900/50 border-slate-700 text-white"
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
-              <div className="text-right font-bold text-white text-base pt-2">
-                სრული თანხა: <span className="text-emerald-400">{(Number(seatsCount) || 1) * selectedRoute.price} ₾</span>
+              <div className="text-right font-bold text-slate-800 text-base pt-2">
+                სრული თანხა: <span className="text-emerald-600">{(Number(seatsCount) || 1) * selectedRoute.price} ₾</span>
               </div>
 
               <Button type="submit" disabled={isSubmitting} className="w-full bg-blue-600 hover:bg-blue-500 text-white">
