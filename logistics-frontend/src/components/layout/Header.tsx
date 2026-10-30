@@ -23,7 +23,9 @@ export const Header = () => {
           <Link href="/routes" className="hover:text-blue-600 transition">მარშრუტები</Link>
           <Link href="/about" className="hover:text-blue-600 transition">ჩვენ შესახებ</Link>
         </nav>
-
+        <Link href="/driver/dashboard" className="text-blue-600 hover:text-blue-700 transition font-semibold">
+            + მარშრუტის დამატება
+          </Link>
         {/* ავტორიზაციის ღილაკები / იუზერი */}
         <div className="flex items-center gap-3">
           {user ? (
