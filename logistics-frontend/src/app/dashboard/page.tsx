@@ -1,70 +1,66 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuthStore } from '../../lib/store';
+import React from 'react';
+import Link from 'next/link';
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const { token, user, logout } = useAuthStore();
-
-  useEffect(() => {
-    // თუ ტოკენი არ არის, ვუშვებთ რედირექტს ლოგინზე
-    if (!token) {
-      router.push('/login');
-    }
-  }, [token, router]);
-
-  if (!token) {
-    return null; // სანამ რედირექტი შესრულდება, არაფერს აჩვენებს
-  }
-
   return (
-    <div className="flex min-h-screen bg-slate-100">
-      {/* გვერდითი მენიუ */}
-      <aside className="w-64 bg-white border-r border-slate-200 p-6 flex flex-col justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-blue-900 mb-6">ლოჯისტიკა პანელი</h2>
+    <div className="min-h-[calc(100vh-4rem)] mesh-bg py-10 px-4 animate-fade-in text-slate-100 flex">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        {/* მარცხენა სალტე (Sidebar) */}
+        <div className="glass-card p-6 rounded-3xl border border-slate-800 space-y-6 h-fit shadow-xl">
+          <h2 className="text-xl font-extrabold text-white tracking-wide">ლოგისტიკა პანელი</h2>
+          
           <nav className="space-y-2">
-            <a href="/dashboard" className="block px-4 py-2 rounded-lg bg-blue-50 text-blue-600 font-medium">მთავარი</a>
-            <a href="#" className="block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-50">შეკვეთები</a>
-            <a href="#" className="block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-50">მარშრუტები</a>
+            <Link 
+              href="/dashboard" 
+              className="block px-4 py-2.5 rounded-xl bg-blue-600 text-white font-medium shadow-lg shadow-blue-600/20"
+            >
+              მთავარი
+            </Link>
+            <Link 
+              href="/dashboard/orders" 
+              className="block px-4 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition"
+            >
+              შეკვეთები
+            </Link>
+            <Link 
+              href="/routes" 
+              className="block px-4 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition"
+            >
+              მარშრუტები
+            </Link>
           </nav>
         </div>
 
-        <button
-          onClick={() => {
-            logout();
-            router.push('/login');
-          }}
-          className="w-full rounded-lg bg-red-50 py-2 text-red-600 font-medium hover:bg-red-100 transition"
-        >
-          გასვლა
-        </button>
-      </aside>
-
-      {/* მთავარი კონტენტი */}
-      <main className="flex-1 p-8">
-        <header className="flex justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-          <h1 className="text-2xl font-bold text-slate-800">გამარჯობა, {user?.fullName || 'მომხმარებელო'}!</h1>
-          <span className="text-sm text-slate-500">{user?.email}</span>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-            <h3 className="text-slate-500 text-sm font-medium">აქტიური შეკვეთები</h3>
-            <p className="text-3xl font-bold text-slate-800 mt-2">12</p>
+        {/* მარჯვენა მთავარი კონტენტი */}
+        <div className="lg:col-span-3 space-y-6">
+          {/* მისალმების ბარათი */}
+          <div className="glass-card p-8 rounded-3xl border border-slate-800 shadow-xl">
+            <h1 className="text-2xl font-extrabold text-white">გამარჯობა, მომხმარებელო! 👋</h1>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-            <h3 className="text-slate-500 text-sm font-medium">მიმდინარე მიწოდებები</h3>
-            <p className="text-3xl font-bold text-blue-600 mt-2">5</p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-            <h3 className="text-slate-500 text-sm font-medium">დასრულებული</h3>
-            <p className="text-3xl font-bold text-green-600 mt-2">48</p>
+
+          {/* სტატისტიკის ქარდები */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-xl hover:border-blue-500/40 transition">
+              <p className="text-sm font-medium text-slate-400">აქტიური შეკვეთები</p>
+              <h3 className="text-4xl font-extrabold text-white mt-2">12</h3>
+            </div>
+            
+            <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-xl hover:border-indigo-500/40 transition">
+              <p className="text-sm font-medium text-slate-400">მიმდინარე მიწოდებები</p>
+              <h3 className="text-4xl font-extrabold text-indigo-400 mt-2">5</h3>
+            </div>
+            
+            <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-xl hover:border-emerald-500/40 transition">
+              <p className="text-sm font-medium text-slate-400">დასრულებული</p>
+              <h3 className="text-4xl font-extrabold text-emerald-400 mt-2">48</h3>
+            </div>
           </div>
         </div>
-      </main>
+
+      </div>
     </div>
   );
 }
