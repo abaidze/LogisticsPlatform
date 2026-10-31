@@ -24,6 +24,10 @@ export const Header = () => {
           <Link href="/" className="hover:text-blue-400 transition">მთავარი</Link>
           <Link href="/routes" className="hover:text-blue-400 transition">მარშრუტები</Link>
           <Link href="/about" className="hover:text-blue-400 transition">ჩვენ შესახებ</Link>
+          {/* პანელის მუდმივი ლინკი ჰედერში */}
+          <Link href="/dashboard" className="text-blue-400 hover:text-blue-300 transition font-semibold">
+            პანელი
+          </Link>
           <Link href="/driver/dashboard" className="text-blue-400 hover:text-blue-300 transition font-semibold">
             + მარშრუტის დამატება
           </Link>
@@ -97,6 +101,13 @@ export const Header = () => {
             className="block text-slate-300 hover:text-blue-400 font-medium py-1"
           >
             ჩვენ შესახებ
+          </Link>
+          <Link
+            href="/dashboard"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-blue-400 font-semibold py-1"
+          >
+            პანელი
           </Link>
           <Link
             href="/driver/dashboard"

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+<<<<<<< Updated upstream
 
 export default function OrdersPage() {
   // დემო შეკვეთების სია (შეგიძლიათ შეცვალოთ ან API-დან წამოიღოთ)
@@ -10,6 +11,55 @@ export default function OrdersPage() {
     { id: 2, route: "ქუთაისი ➔ თბილისი", seats: 1, price: 25, status: "დასრულებული", date: "2026-10-28" },
     { id: 3, route: "თბილისი ➔ რუსთავი", seats: 3, price: 45, status: "მიმდინარე", date: "2026-10-25" },
   ];
+=======
+import axios from 'axios';
+
+interface BookingItem {
+  id: number;
+  route?: string;
+  fromCity?: string;
+  toCity?: string;
+  seatsBooked?: number;
+  seats?: number;
+  totalAmount?: number;
+  price?: number;
+  status: string;
+  date: string;
+  guestName?: string;
+}
+
+export default function OrdersPage() {
+  const [orders, setOrders] = useState<BookingItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchUserOrders = async () => {
+      try {
+        // ამოვიღოთ ლოკალური მეხსიერებიდან მიმდინარე იუზერის სახელი 
+        // (დარწმუნდი, რომ შესვლისას ან რეგისტრაციისას სახელი ინახება "username" ან "user" გასაღებით)
+        const currentUsername = localStorage.getItem("username") || localStorage.getItem("user") || "";
+
+        const token = localStorage.getItem("token");
+        
+        // გადავცემთ guestName პარამეტრს ბექენდს
+        const response = await axios.get(`https://localhost:7123/api/Bookings?guestName=${encodeURIComponent(currentUsername)}`, {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : undefined
+          }
+        });
+
+        setOrders(response.data);
+      } catch (error) {
+        console.error("ვერ მოხერხდა შეკვეთების წამოღება:", error);
+        setOrders([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserOrders();
+  }, []);
+>>>>>>> Stashed changes
 
   return (
     <div className="min-h-[calc(100vh-4rem)] mesh-bg py-10 px-4 animate-fade-in text-slate-100 flex">
@@ -30,7 +80,7 @@ export default function OrdersPage() {
               href="/dashboard/orders" 
               className="block px-4 py-2.5 rounded-xl bg-blue-600 text-white font-medium shadow-lg shadow-blue-600/20"
             >
-              შეკვეთები
+              დაჯავშნილი შეკვეთების სია
             </Link>
             <Link 
               href="/routes" 
@@ -44,7 +94,7 @@ export default function OrdersPage() {
         {/* მარჯვენა მთავარი კონტენტი */}
         <div className="lg:col-span-3 space-y-6">
           <div className="glass-card p-8 rounded-3xl border border-slate-800 shadow-xl space-y-6">
-            <h1 className="text-2xl font-extrabold text-white">ჩემი შეკვეთები 📦</h1>
+            <h1 className="text-2xl font-extrabold text-white">ჯავშნები 📦</h1>
             
             <div className="space-y-4">
               {orders.map((order) => (

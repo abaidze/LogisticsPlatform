@@ -9,18 +9,36 @@
 * **Resilience & QA:** React ErrorBoundary, Debounced search, Responsive CSS Media/Grid layouts.
 
 ---
+<<<<<<< Updated upstream
+=======
+## ✨ ძირითადი ფუნქციონალი
+
+- **მონაცემთა მართვა (CRUD & State):** დინამიური დაკავშირება `.NET` ბექენდთან და PostgreSQL ბაზასთან, შეკვეთებისა და მარშრუტების რეალურ დროში მართვა.
+- **ძიება და ფილტრაცია:** ოპტიმიზებული ცოცხალი ძიება `useDebounce` ჰუკით და მემოიზებული ფილტრაცია `useMemo`-ით.
+- **მოდალური ფანჯრები და ვალიდაცია:** ინტერაქტიული მოდალები და მკაცრი ფორმის ვალიდაცია უსაფრთხო შეყვანისთვის.
+- **მდგრადობა (Resilience):** `ErrorBoundary` მექანიზმი თეთრი ეკრანის წინააღმდეგ, Double-Click ბლოკირება ღილაკებზე და საიმედო შეცდომების მართვა.
+- **Responsive დიზაინი:** Mobile-First მიდგომა, Tailwind CSS ბადეები და ადაპტირებული ინტერფეისი მობილური (375px), პლანშეტისა და დესკტოპისთვის (1440px).
+
+---
+## 🗂️ პროექტის არქიტექტურა
+
+```text
+src/
+├── app/            # Next.js App Router გვერდები და მარშრუტები
+├── components/     # ხელახლა გამოყენებადი UI კომპონენტები (Buttons, Modals, Inputs)
+├── hooks/          # Custom ჰუკები (useDebounce და სხვ.)
+>>>>>>> Stashed changes
 
 ## 🚀 Local Run Instructions (როგორ გავუშვათ ადგილობრივად)
 
 ### 1. ბექენდის გაშვება (.NET API)
 გახსენით ტერმინალი, გადადით ბექენდის ფოლდერში და გაუშვით:
-cd LogisticsBackend
 dotnet run
 (სერვერი სტანდარტულად გაეშვება https://localhost:7123-ზე)
 
 ### 2. ფრონტენდის გაშვება (Next.js)
 გახსენით მეორე ტერმინალი, გადადით პროექტის მთავარ საქაღალდეში და გაუშვით:
-cd "Final Project"
+cd "logistics-frontend"
 npm install
 npm run dev
 (აპლიკაცია ხელმისაწვდომი იქნება http://localhost:3000-ზე)

@@ -4,7 +4,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
-import { Card } from "../../components/ui/Card";
 import { Modal } from "../../components/ui/Modal";
 import axios from "axios";
 
@@ -99,7 +98,7 @@ export default function RoutesPage() {
           </div>
         )}
         
-        {/* ძებნის პანელი შუშის ეფექტით */}
+       {/* ძებნის პანელი შუშის ეფექტით */}
         <div className="glass-card p-6 rounded-2xl shadow-lg mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-1">საიდან</label>
@@ -108,7 +107,8 @@ export default function RoutesPage() {
               placeholder="ქალაქი..." 
               value={searchFrom} 
               onChange={(e) => setSearchFrom(e.target.value)} 
-              className="bg-slate-900/50 border-slate-700 text-white placeholder-slate-500"
+              style={{ color: "#0f172a", backgroundColor: "#ffffff" }}
+              className="!bg-white !text-slate-900 border-slate-300 placeholder-slate-400 font-semibold"
             />
           </div>
           <div>
@@ -118,7 +118,8 @@ export default function RoutesPage() {
               placeholder="ქალაქი..." 
               value={searchTo} 
               onChange={(e) => setSearchTo(e.target.value)} 
-              className="bg-slate-900/50 border-slate-700 text-white placeholder-slate-500"
+              style={{ color: "#0f172a", backgroundColor: "#ffffff" }}
+              className="!bg-white !text-slate-900 border-slate-300 placeholder-slate-400 font-semibold"
             />
           </div>
         </div>
@@ -160,11 +161,11 @@ export default function RoutesPage() {
           </div>
         )}
 
-        {/* დაჯავშნის მოდალი */}
+       {/* დაჯავშნის მოდალი */}
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="მარშრუტის დაჯავშნა">
           {selectedRoute && (
             <form onSubmit={handleBookingSubmit} className="space-y-4">
-              <div className="bg-slate-100 p-3 rounded-xl text-sm text-slate-700 space-y-1 border border-slate-200">
+              <div className="bg-slate-100 p-3 rounded-xl text-sm text-slate-800 space-y-1 border border-slate-200">
                 <p><strong>მიმართულება:</strong> {selectedRoute.fromCity} ➔ {selectedRoute.toCity}</p>
                 <p><strong>ფასი 1 ადგილზე:</strong> {selectedRoute.price} ₾</p>
                 <p><strong>თარიღი:</strong> {selectedRoute.date}</p>
@@ -178,7 +179,8 @@ export default function RoutesPage() {
                   placeholder="შეიყვანეთ სახელი..."
                   value={passengerName}
                   onChange={(e) => setPassengerName(e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  style={{ color: "#0f172a", backgroundColor: "#ffffff" }}
+                  className="w-full px-3 py-2 !bg-white !text-slate-900 border border-slate-400 rounded-xl placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
                 />
               </div>
 
@@ -197,7 +199,8 @@ export default function RoutesPage() {
                     }
                   }}
                   required
-                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  style={{ color: "#0f172a", backgroundColor: "#ffffff" }}
+                  className="w-full px-3 py-2 !bg-white !text-slate-900 border border-slate-400 rounded-xl placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
                 />
               </div>
 

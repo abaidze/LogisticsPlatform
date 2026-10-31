@@ -36,6 +36,14 @@ export default function LoginPage() {
       const { token, user } = response.data;
       setAuth(user, token);
 
+      // ვინახავთ მომხმარებლის იდენტიფიკატორს localStorage-ში, რომ OrdersPage-მა გაფილტროს
+      const usernameToSave = user?.name || user?.username || user?.email || email;
+      localStorage.setItem('username', usernameToSave);
+      localStorage.setItem('user', usernameToSave);
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'ავტორიზაცია ვერ მოხერხდა. შეამოწმეთ მონაცემები.');
